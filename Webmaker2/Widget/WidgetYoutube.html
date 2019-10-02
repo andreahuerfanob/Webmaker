@@ -24,13 +24,52 @@
     <a class="text-dark" href="WidgetList.html">
       <i class="fas fa-check"></i>
     </a>
-
+  </nav>
 <main class="container">
     <form>
         <div class="form-group">
-            <label for=
+            <label for= name">Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter widget name..."
+              class="form-control"
+              <div class="form-group">
+                <label for="text">Text</label>
+                <input
+                  type="text"
+                  id="text"
+                  placeholder="Enter widget text..."
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="url">URL</label>
+                <input
+                  type="text"
+                  id="url"
+                  placeholder="Enter YouTube Address.."
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="width">Width</label>
+                <input
+                  type="range"
+                  min="1"
+                  max="100"
+                  class="form-control"
+                  id="width"
+                />
         </div>
+        <button class="btn btn-danger btn-block">Delete</button>
     </form>
-</span>
+  </main>
+  <footer class="navbar navbar-light fixed-bottom">
+    <span></span>
+    <a href="../user/Profile.html" class="text-dark">
+      <i class="fas fa-user"></i>
+    </a>
+  </footer>
   </body>
 </html>

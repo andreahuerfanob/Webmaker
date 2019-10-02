@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Edit Page</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -12,51 +11,50 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../style.css" />
-    <script
-      src="https://kit.fontawesome.com/9ef3e8bfe7.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Edit Page</title>
+    <title>Edit Widget</title>
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light fixed-top">
+    <nav class="navbar bg-light navbar-light fixed-top">
       <div>
-        <a class="text-dark" href="Pagelist.html">
-          <i class="fas fa-chevron-left"> </i>
+        <a class="text-dark" href="WidgetList.html">
+          <i class="fas fa-chevron-left"></i>
         </a>
-        <span class="navbar-brand h1 ml-4 mb-0">Edit Page</span>
+        <span class="navbar-brand h1 mb-0 ml-4">Edit Widget</span>
       </div>
-      <a class="text-dark" href="Pagelist.html">
-        <i class="fas fa-check"> </i>
+      <a class="text-dark" href="WidgetList.html">
+        <i class="fas fa-check"></i>
       </a>
     </nav>
     <main class="container">
       <form>
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name">name</label>
           <input
             type="text"
             class="form-control"
-            placeholder="Enter page name..."
+            placeholder="Enter Widget name..."
             id="name"
-            value="Blog Post"
           />
         </div>
         <div class="form-group">
-          <label for="title">Title </label>
+          <label for="text">Text</label>
           <input
             type="text"
             class="form-control"
-            placeholder="Enter page title..."
-            id="title"
+            placeholder="Enter Widget text..."
+            id="text"
           />
         </div>
-        <a href="Pagelist.html" class="btn btn-danger btn-block">Delete </a>
+        <div class="form-group">
+          <label for="size">Size</label>
+          <input type="range" min="1" max="6" class="form-control" id="size" />
+        </div>
+        <button class="btn btn-danger btn-block">Delete</button>
       </form>
     </main>
-    <footer class="navbar navbar-light bg-light fixed-bottom">
+    <footer class="navbar navbar-light fixed-bottom">
       <span></span>
-      <a href="../user/Profile.html" class="text-dark">
+      <a href="..user/Profile.html" class="text-dark">
         <i class="fas fa-user"></i>
       </a>
     </footer>

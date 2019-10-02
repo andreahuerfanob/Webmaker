@@ -14,48 +14,59 @@
     <title>Edit Widget</title>
   </head>
   <body>
-    <nav class="navbar bg-light navbar-light fixed-top">
+    <nav class="navbar navbar-light bg-light fixed-top">
       <div>
-        <a href="WidgetList.html">
-          <i class="fas fa-chevron-1 left"></i>
+        <a href="WidgetList.html" class="text-dark">
+          <i class="fas fa chevron-left"></i>
         </a>
         <span class="navbar-brand h1 mb-0 ml-4">Edit Widget</span>
       </div>
-      <a class="text-dark" href="WidgetList.html">
+      <a href="WidgetList.html" class="text-dark">
         <i class="fas fa-check"></i>
       </a>
     </nav>
     <main class="container">
       <form>
         <div class="form-group">
-          <label for="name">name</label>
+          <label for="name">Name</label>
           <input
             type="text"
             class="form-control"
-            placeholder="Enter Widget name..."
             id="name"
+            placeholder="Enter widget text..."
           />
         </div>
         <div class="form-group">
-          <label for="text">Text</label>
+          <label for="url">URL</label>
           <input
             type="text"
-            class="form-group"
-            placeholder="Enter Widget text..."
-            id="text"
+            class="form-control"
+            id="url"
+            placeholder="Enter image address"
           />
         </div>
         <div class="form-group">
-          <label for="size">Size</label>
-          <input type="range" min="1" max="6" class="form-control" id="size" />
+          <label for="width">width</label>
+          <input
+            type="range"
+            class="form-control"
+            min="1"
+            max="100"
+            id="width"
+          />
         </div>
-        <button class="btn btn-danger btn-block">Delete</button>
+        <div class="form-group">
+          <label for="upload">upload</label>
+          <input type="file" class="form-control" id="upload" />
+        </div>
+        <button class="btn btn-primary btn-block">Upload Image</button>
+        <a href="WidgetList.html" class="btn btn-danger btn-block"> Delete</a>
       </form>
     </main>
-    <footer class="navbar navbar-light fixed-bottom">
+    <footer class="navbar navbar-light bg-light fixed-bottom">
       <span></span>
-      <a href="..user/Profile.html" class="text-dark">
-        <i class="fas fa-user"></i>
+      <a href="" class="text-dark">
+        <i class="fas fa user"></i>
       </a>
     </footer>
   </body>
