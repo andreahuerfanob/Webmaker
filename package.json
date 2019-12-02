@@ -19,5 +19,6 @@
   "homepage": "https://github.com/andreahuerfanob/Webmaker#readme",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+"proxy": "http://localhost:3100"
 }
