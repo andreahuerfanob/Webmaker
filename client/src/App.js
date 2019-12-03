@@ -114,25 +114,6 @@ function App() {
       url: "https://www.youtube.com/embed/X1JjPS40a-E"
     }
   ]);
-
-  // Add a new user into users
-  const addUser = user => {
-    setUsers([...users, user]);
-  };
-
-  // update user by id
-  const updateUser = newUser => {
-    setUsers(
-      users.map(user => {
-        if (user._id === newUser._id) {
-          return newUser;
-        } else {
-          return user;
-        }
-      })
-    );
-  };
-
   // get websites by user id
   const getWebsites = uid => {
     const curWebs = [];
@@ -303,7 +284,7 @@ function App() {
           />
         </Route>
         <Route path="/">
-          <Login users={users} />
+          <Login />
         </Route>
       </Switch>
     </Router>
