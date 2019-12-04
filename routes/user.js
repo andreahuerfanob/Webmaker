@@ -56,19 +56,17 @@ router.get("/", (req, res) => {
             }
           }
         }
-
-
-
-
-
         // if user doesnt exist 
         if(!user) {
             user = null; 
         }
         // send user back to client 
         res.json(user);
-        }
-    }
+        });
+  // create new user 
+  router.post("/", (req,res)=>{
+    
+  })
     /api/user?username=username&password=password"
 })
 module.exports = router;
