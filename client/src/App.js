@@ -19,42 +19,6 @@ import WidgetChooser from "./components/widget/WidgetChooser";
 import WidgetEdit from "./components/widget/WidgetEdit";
 
 function App() {
-  // user data
-  const [users, setUsers] = useState([
-    {
-      _id: "123",
-      username: "alice",
-      password: "alice",
-      firstName: "Alice",
-      lastName: "Wonder",
-      email: "alice@gmail.com"
-    },
-    {
-      _id: "234",
-      username: "bob",
-      password: "bob",
-      firstName: "Bob",
-      lastName: "Marley",
-      email: "bob@whatever.com"
-    },
-    {
-      _id: "345",
-      username: "charly",
-      password: "charly",
-      firstName: "Charly",
-      lastName: "Garcia",
-      email: "charly@ulem.com"
-    },
-    {
-      _id: "456",
-      username: "shiyu",
-      password: "shiyu",
-      firstName: "Shiyu",
-      lastName: "Wang",
-      email: "swang@ulem.org"
-    }
-  ]);
-
   const [websites, setWebsites] = useState([
     { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
     { _id: "234", name: "Tweeter", developerId: "456", description: "Lorem" },

@@ -18,8 +18,8 @@ export default function Register(props) {
       return;
     }
     // Check if username is taken
-    const res = await axious.get(`/api/user?username=${username}`);
-    if(res.data) {
+    const res = await axios.get(`/api/user?username=${username}`);
+    if (res.data) {
       alert("Username is taken, please try another one");
       return;
     }
