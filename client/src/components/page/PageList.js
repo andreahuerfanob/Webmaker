@@ -7,8 +7,16 @@ export default function PageList(props) {
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
-    setPages(props.getPages(params.wid));
-  }, [params.wid, props]);
+  getPages();
+  // ESLINT-DISABLE-NXT-LINE 
+  }, []); 
+
+  const getPages = async () => {
+    const res = await axios.get(`/api/page/website/${params.wid}`); 
+    const pages = res.data; 
+    setPages(res.data);
+
+  };
 
   return (
     <div>
