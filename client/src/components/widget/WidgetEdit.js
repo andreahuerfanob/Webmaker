@@ -80,7 +80,15 @@ port default function WidgetEdit(props) {
     // split url with "/"
     const urlArray = newWidget.url.split("/");
     // parse url into embeded version
-    newWidget = 
+    newWidget.url =
+    "https://www.youtube.com/embed/" + urlArray[urlArray.length - 1];
+}
+await axios.put("/api/widget", newWidget);
+history.push(
+  `/user/${params.uid}/website/${params.wid}/page/${params.pid}/widget`
+);
+};
+if (widget.widgetType === "HEADING") {
     return (
       <WidgetYouTube
         widget={widget}
@@ -88,6 +96,27 @@ port default function WidgetEdit(props) {
         remove={remove}
         update={update}
       />
+    );
+  }
+  if (widget.widgetType === "IMAGE") {
+    return (
+      <WidgetImage
+        widget={widget}
+        onChange={onChange}
+        remove={remove}
+        update={update}
+      />
+    );
+  }
+
+  if (widget.widgetType === "YOUTUBE") {
+    return (
+      <WidgetYouTube
+        widget={widget}
+        onChange={onChange}
+        remove={remove}
+        update={update}
+        />
     );
   }
   return <div></div>;
