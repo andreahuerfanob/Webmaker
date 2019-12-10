@@ -18,58 +18,45 @@ import WidgetList from "./components/widget/WidgetList";
 import WidgetChooser from "./components/widget/WidgetChooser";
 import WidgetEdit from "./components/widget/WidgetEdit";
 
-function App() { 
+function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/login">
-          <Login  />
+          <Login />
         </Route>
         <Route exact path="/register">
-          <Register  />
+          <Register />
         </Route>
         <Route exact path="/user/:uid">
           <Profile />
         </Route>
         <Route exact path="/user/:uid/website">
-          <WebsiteList getWebsites={getWebsites} />
+          <WebsiteList />
         </Route>
         <Route exact path="/user/:uid/website/new">
-          <WebsiteNew getWebsites={getWebsites} addWebsite={addWebsite} />
+          <WebsiteNew />
         </Route>
         <Route exact path="/user/:uid/website/:wid">
-          <WebsiteEdit
-            getWebsites={getWebsites}
-            getWebsite={getWebsite}
-            removeWebsite={removeWebsite}
-            updateWebsite={updateWebsite}
-          />
+          <WebsiteEdit />
         </Route>
         <Route exact path="/user/:uid/website/:wid/page">
-          <PageList getPages={getPages} />
+          <PageList />
         </Route>
         <Route exact path="/user/:uid/website/:wid/page/new">
-          <PageNew addPage={addPage} />
+          <PageNew />
         </Route>
         <Route exact path="/user/:uid/website/:wid/page/:pid">
-          <PageEdit
-            getPage={getPage}
-            removePage={removePage}
-            updatePage={updatePage}
-          />
+          <PageEdit />
         </Route>
         <Route exact path="/user/:uid/website/:wid/page/:pid/widget">
-          <WidgetList getWidgets={getWidgets} />
+          <WidgetList />
         </Route>
         <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new">
-          <WidgetChooser addWidget={addWidget} />
+          <WidgetChooser />
         </Route>
         <Route exact path="/user/:uid/website/:wid/page/:pid/widget/:wgid">
-          <WidgetEdit
-            getWidget={getWidget}
-            removeWidget={removeWidget}
-            updateWidget={updateWidget}
-          />
+          <WidgetEdit />
         </Route>
         <Route path="/">
           <Login />

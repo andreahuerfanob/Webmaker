@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from "constants";
 
 export default function WebsiteList(props) {
   const params = useParams();
+
   const [websites, setWebsites] = useState([]);
 
   useEffect(() => {

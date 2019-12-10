@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function PageList(props) {
   const params = useParams();
@@ -7,15 +8,14 @@ export default function PageList(props) {
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
-  getPages();
-  // ESLINT-DISABLE-NXT-LINE 
-  }, []); 
+    getPages();
+    // ESLINT-DISABLE-NXT-LINE
+  }, []);
 
   const getPages = async () => {
-    const res = await axios.get(`/api/page/website/${params.wid}`); 
-    const pages = res.data; 
+    const res = await axios.get(`/api/page/website/${params.wid}`);
+    const pages = res.data;
     setPages(res.data);
-
   };
 
   return (

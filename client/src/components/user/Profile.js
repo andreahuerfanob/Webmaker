@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Profile(props) {
   const [username, setUsername] = useState("");
@@ -9,10 +10,6 @@ export default function Profile(props) {
   const [password, setPassword] = useState("");
 
   const params = useParams();
-
-  useEffect(() => {
-    getUser();
-  }, [getUser]);
 
   const getUser = async () => {
     const res = await axios.get(`/api/user/${params.uid}`)
@@ -25,6 +22,11 @@ export default function Profile(props) {
   setPassword(user.password);
   };
 
+  useEffect(() => {
+    // get user from server * 
+    getUser();
+     //eslint-disable-next-line
+  }, []);
 
   const update = () => {
     const newUser = {
@@ -38,9 +40,7 @@ export default function Profile(props) {
 
     // update user in users
    await axios.put("/api/user", newUser);
-
-
-    alert("user info is updated!");
+ alert("user info is updated!");
   };
 
   return (

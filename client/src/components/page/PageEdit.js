@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import Axios from "Axios"; 
+import Axios from "Axios";
 
 export default function PageEdit(props) {
   const history = useHistory();
@@ -14,15 +14,15 @@ export default function PageEdit(props) {
     // eslint-disable-nxt-line
   }, []);
 
-const getPage = async () => {
-  Const res = await Axios.get(`/api/page/${params.pid}`)
-  const page = res.data; 
-  setName(page.name);
-  setTitle(page.title);
-};
+  const getPage = async () => {
+    const res = await Axios.get(`/api/page/${params.pid}`);
+    const page = res.data;
+    setName(page.name);
+    setTitle(page.title);
+  };
 
-const remove = () => {
-  await Axios.delete(`/api/page/${params.pid}`)
+  const remove = async () => {
+    await Axios.delete(`/api/page/${params.pid}`);
     history.push(`/user/${params.uid}/website/${params.wid}/page`);
   };
 

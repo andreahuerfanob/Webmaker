@@ -13,7 +13,7 @@ export default function WebsiteEdit(props) {
 
   useEffect(() => {
     // Initialize left websites list
-    setWebsites(props.getWebsites(params.uid));
+    getWebsites();
     // Initialize right website form
     getWebsite();
     // eslint-disable-next-line

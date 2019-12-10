@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/andreahuerfanob/Webmaker#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.1"
   },
-"proxy": "http://localhost:3100"
+  "proxy": "http://localhost:3100"
 }
