@@ -5,7 +5,7 @@ import WidgetImage from "./WidgetImage";
 import WidgetYouTube from "./WidgetYouTube";
 import axios from "axios";
 
-port default function WidgetEdit(props) {
+export default function WidgetEdit(props) {
   const params = useParams();
   const history = useHistory();
   const [widget, setWidget] = useState({});
@@ -77,47 +77,14 @@ port default function WidgetEdit(props) {
   }
 
   if (widget.widgetType === "YOUTUBE") {
-    // split url with "/"
-    const urlArray = newWidget.url.split("/");
-    // parse url into embeded version
-    newWidget.url =
-    "https://www.youtube.com/embed/" + urlArray[urlArray.length - 1];
-}
-await axios.put("/api/widget", newWidget);
-history.push(
-  `/user/${params.uid}/website/${params.wid}/page/${params.pid}/widget`
-);
+    return (
+      <WidgetYouTube
+        widget={widget}
+        onChange={onChange}
+        remove={remove}
+        update={update}
+      />
+    );
 };
-if (widget.widgetType === "HEADING") {
-    return (
-      <WidgetYouTube
-        widget={widget}
-        onChange={onChange}
-        remove={remove}
-        update={update}
-      />
-    );
-  }
-  if (widget.widgetType === "IMAGE") {
-    return (
-      <WidgetImage
-        widget={widget}
-        onChange={onChange}
-        remove={remove}
-        update={update}
-      />
-    );
-  }
-
-  if (widget.widgetType === "YOUTUBE") {
-    return (
-      <WidgetYouTube
-        widget={widget}
-        onChange={onChange}
-        remove={remove}
-        update={update}
-        />
-    );
-  }
   return <div></div>;
 }

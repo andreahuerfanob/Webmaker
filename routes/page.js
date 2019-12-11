@@ -55,10 +55,5 @@ router.delete("/", (req, res)=> {
        }   
        }
        res.json(pages);
-
-
-
-
-
-
+    });
 module.exports = router;
