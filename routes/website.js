@@ -11,53 +11,53 @@ const websites = [
   { _id: "789", name: "Chess", developerId: "234", description: "Lorem" }
 ];
 
-// Create website 
+// Create website
 router.post("/", (req, res) => {
-    const newWebsite = req.body;
-    websites.push(newWebsite);
-    res.json(newWebsite);
+  const newWebsite = req.body;
+  websites.push(newWebsite);
+  res.json(newWebsite);
 });
 
-// get all website 
-router.get("/user/:uid",( req, res) => {
-    const uid = req.params.uid;
-    let currentWebsites = [];
-    for(let i=0; i < websites.length;i++) {
-        if(websites[i].developerId=== uid) {
-            currentWebsites.push(websites[i]);
-        }
+// get all website
+router.get("/user/:uid", (req, res) => {
+  const uid = req.params.uid;
+  let currentWebsites = [];
+  for (let i = 0; i < websites.length; i++) {
+    if (websites[i].developerId === uid) {
+      currentWebsites.push(websites[i]);
     }
-    res.json(currentWebsites);
+  }
+  res.json(currentWebsites);
 });
-// Get website by given ID  
-router.get("/:wid", (req,res) => {
-    const wid = req.params.wid;
-    let website = null;
-    for (let i=0, i < websites.length;i++) {
-        if(websites[i]._id === wid) {
-            website = websites[i];
-        }
-        }
-        res.json(website);
-    });
+// Get website by given ID
+router.get("/:wid", (req, res) => {
+  const wid = req.params.wid;
+  let website = null;
+  for (let i = 0; i < websites.length; i++) {
+    if (websites[i]._id === wid) {
+      website = websites[i];
+    }
+  }
+  res.json(website);
+});
 // update website
-router.put("/",(req, res) => {
-    const newWebsite = req.body;
-    for (let i=0;i < websites.length; i++) {
-        if(websites[i]._id === newWebsite._id) {
-            websites[i] = newWebsite;
-        }
-        }
-        res.json(newWebsite);
+router.put("/", (req, res) => {
+  const newWebsite = req.body;
+  for (let i = 0; i < websites.length; i++) {
+    if (websites[i]._id === newWebsite._id) {
+      websites[i] = newWebsite;
+    }
+  }
+  res.json(newWebsite);
 });
-// Delete Website 
-router.delete("/:wid", (req, res)  => {
-    const wid = req.params.wid;
-    for (let i=0;i < websites.length; i++) {
-        if(websites[i]._id === wid) {
-            websites.splice(i, 1);
-        }
-        }
-    res.json(websites);
-    });
+// Delete Website
+router.delete("/:wid", (req, res) => {
+  const wid = req.params.wid;
+  for (let i = 0; i < websites.length; i++) {
+    if (websites[i]._id === wid) {
+      websites.splice(i, 1);
+    }
+  }
+  res.json(websites);
+});
 module.exports = router;
