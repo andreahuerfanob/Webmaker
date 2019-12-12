@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const User = 
+
 const users = [
   {
     _id: "123",
@@ -36,19 +38,20 @@ const users = [
   }
 ];
 // Find user by credentials
-router.get("/", (req, res) => {
+router.get("/", await (req, res) => {
   // get username & pass
   const username = req.query.username;
   const password = req.query.password;
   let user;
   // if username & password r sent from client
   if (username && password) {
-    for (let i = 0; i < users.length; i++) {
+    user = await User.findOne({username: username, password: password });
       // if user has a given username & password
-      if (users[i].username === username && users[i].password === password) {
-        user = users[i];
-      }
-    }
+      if 
+
+
+
+
   } // if the username is taken
   else if (username) {
     for (let i = 0; i < users.length; i++) {
@@ -65,31 +68,28 @@ router.get("/", (req, res) => {
   res.json(user);
 });
 // create new user
-router.post("/", (req, res) => {
-  const newUser = req.body;
-  users.push(newUser);
+router.post("/", async (req, res) => {
+  const userToSave = new User({...req.body});
+  
+  
+  
+
+  
+  
+  newUser.save();
   res.json(newUser);
 });
 // Find user by id
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  let user = null;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i]._id === id) {
-      user = users[i];
-    }
-  }
+  const user = await User.findById(id);
   res.json(user);
 });
 
 // Update user
 router.put("/", (req, res) => {
   const newUser = req.body;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i]._id === newUser._id) {
-      users[i] = newUser;
-    }
-  }
+ await User.findByIdAndUpdate(newUser._id, newUser);
   res.json(newUser);
 });
 

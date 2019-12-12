@@ -5,7 +5,10 @@
   "main": "server.js ",
   "scripts": {
     "start": "node server.js",
-    "build": "cd client && NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "server": "nodemon server.js",
+    "build": "cd client && NPM_CONFIG_PRODUCTION=false npm install && npm run build",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "repository": {
     "type": "git",
@@ -19,8 +22,12 @@
   "homepage": "https://github.com/andreahuerfanob/Webmaker#readme",
   "dependencies": {
     "axios": "^0.19.0",
+    "config": "^3.2.4",
     "express": "^4.17.1",
+    "mongoose": "^5.8.0",
     "nodemon": "^2.0.1"
   },
-  "proxy": "http://localhost:3100"
+  "devDependencies": {
+    "concurrently": "^5.0.1"
+  }
 }
