@@ -28,7 +28,7 @@ export default function Profile(props) {
      //eslint-disable-next-line
   }, []);
 
-  const update = () => {
+  const update = async () => {
     const newUser = {
       _id: params.uid,
       username: username,
