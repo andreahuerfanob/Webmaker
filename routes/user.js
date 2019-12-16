@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const User = 
+const User = require("../models/User");
 
 const users = [
   {
@@ -38,7 +38,7 @@ const users = [
   }
 ];
 // Find user by credentials
-router.get("/", await (req, res) => {
+router.get("/", async (req, res) => {
   // get username & pass
   const username = req.query.username;
   const password = req.query.password;
@@ -46,19 +46,10 @@ router.get("/", await (req, res) => {
   // if username & password r sent from client
   if (username && password) {
     user = await User.findOne({username: username, password: password });
-      // if user has a given username & password
-      if 
+      // if the username is taken
+  } else if (username) {
+    user = await User.findOne({username: username, password: password });
 
-
-
-
-  } // if the username is taken
-  else if (username) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].username === username) {
-        user = users[i];
-      }
-    }
   }
   // if user doesn't exist
   if (!user) {
@@ -69,28 +60,32 @@ router.get("/", await (req, res) => {
 });
 // create new user
 router.post("/", async (req, res) => {
-  const userToSave = new User({...req.body});
-  
-  
-  
-
-  
-  
-  newUser.save();
-  res.json(newUser);
+  const newUser = req.body;
+  const userToSave = new User({
+    username: newUser.username,
+    password: newUser.password,
+    firstName:newUser.firstName,
+    lastName:newUser.lastName,
+    email:newUser.email,
+  });
+  const userToSave = newUser({...req.body});
+   const user = await userToSave.save();
+  res.json(user);
 });
+  
 // Find user by id
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   const id = req.params.id;
-  const user = await User.findById(id);
+const user = await User.findById(id);
   res.json(user);
 });
 
 // Update user
 router.put("/", (req, res) => {
   const newUser = req.body;
- await User.findByIdAndUpdate(newUser._id, newUser);
+ await User.findByIdAndUpdate(newUser._id, newUser)
   res.json(newUser);
+
 });
 
 module.exports = router;
