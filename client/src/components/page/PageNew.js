@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import uuid from "uuid";
-import Axios from "Axios"; 
+import Axios from "Axios";
 
 export default function PageNew(props) {
   const history = useHistory();

@@ -24,15 +24,14 @@ export default function Register(props) {
     }
     // Add new user into users
     const newUser = {
-    
       username: username,
       password: password,
       firstName: "",
       lastName: "",
       email: ""
     };
-    await axios.post("/api/user", newUser);
-    Console.log(newUser);
+    const res2 = await axios.post("/api/user", newUser);
+
     // Navigate user into his profile
     history.push(`/user/${newUser._id}`);
   };

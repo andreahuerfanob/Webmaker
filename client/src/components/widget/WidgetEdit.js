@@ -29,7 +29,8 @@ export default function WidgetEdit(props) {
     history.push(`/user/${params.uid}/website/${params.wid}/page/${params.pid}/widget`);
   };
     
-  const update = () => {
+  const update = async => {
+    e.preventDefault();
     const newWidget = widget;
     if(newWidget.widgetType === "HEADING" && !widget.size) {
       widget.size = "1";

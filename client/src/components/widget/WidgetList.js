@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
-
 export default function WidgetList(props) {
   const params = useParams();
 
@@ -10,7 +9,7 @@ export default function WidgetList(props) {
 
   useEffect(() => {
     getWidgets();
-    //eslint-disable-next-line 
+    //eslint-disable-next-line
   }, []);
 
   const getWidgets = async () => {
@@ -64,7 +63,10 @@ export default function WidgetList(props) {
               </div>
             )}
             {widget.widgetType === "YOUTUBE" && (
-              <div style={{width: widget.width}} className="embed-responsive embed-responsive-16by9">
+              <div
+                style={{ width: widget.width }}
+                className="embed-responsive embed-responsive-16by9"
+              >
                 <iframe
                   src={widget.url}
                   title="video"
