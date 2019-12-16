@@ -3,40 +3,6 @@ const router = express.Router();
 
 const User = require("../models/User");
 
-const users = [
-  {
-    _id: "123",
-    username: "alice",
-    password: "alice",
-    firstName: "Alice",
-    lastName: "Wonder",
-    email: "alice@gmail.com"
-  },
-  {
-    _id: "234",
-    username: "bob",
-    password: "bob",
-    firstName: "Bob",
-    lastName: "Marley",
-    email: "bob@whatever.com"
-  },
-  {
-    _id: "345",
-    username: "charly",
-    password: "charly",
-    firstName: "Charly",
-    lastName: "Garcia",
-    email: "charly@ulem.com"
-  },
-  {
-    _id: "456",
-    username: "shiyu",
-    password: "shiyu",
-    firstName: "Shiyu",
-    lastName: "Wang",
-    email: "swang@ulem.org"
-  }
-];
 // Find user by credentials
 router.get("/", async (req, res) => {
   // get username & pass
@@ -45,11 +11,10 @@ router.get("/", async (req, res) => {
   let user;
   // if username & password r sent from client
   if (username && password) {
-    user = await User.findOne({username: username, password: password });
-      // if the username is taken
+    user = await User.findOne({ username: username, password: password });
+    // if the username is taken
   } else if (username) {
-    user = await User.findOne({username: username, password: password });
-
+    user = await User.findOne({ username: username, password: password });
   }
   // if user doesn't exist
   if (!user) {
@@ -60,32 +25,24 @@ router.get("/", async (req, res) => {
 });
 // create new user
 router.post("/", async (req, res) => {
-  const newUser = req.body;
-  const userToSave = new User({
-    username: newUser.username,
-    password: newUser.password,
-    firstName:newUser.firstName,
-    lastName:newUser.lastName,
-    email:newUser.email,
-  });
-  const userToSave = newUser({...req.body});
-   const user = await userToSave.save();
+  const newUser = new User({ ...req.body });
+  const user = await newUser.save();
+  console.log(user);
   res.json(user);
 });
-  
+
 // Find user by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
-const user = await User.findById(id);
+  const user = await User.findById(id);
+  console.log(user);
   res.json(user);
 });
-
 // Update user
-router.put("/", (req, res) => {
+router.put("/", async (req, res) => {
   const newUser = req.body;
- await User.findByIdAndUpdate(newUser._id, newUser)
+  await User.findByIdAndUpdate(newUser._id, newUser);
   res.json(newUser);
-
 });
 
 module.exports = router;
