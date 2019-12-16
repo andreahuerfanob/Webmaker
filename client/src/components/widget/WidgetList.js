@@ -13,6 +13,11 @@ export default function WidgetList(props) {
     //eslint-disable-next-line 
   }, []);
 
+  const getWidgets = async () => {
+    const res = await axios.get(`/api/widget/page/${params.pid}`);
+    setWidgets(res.data);
+  };
+
   return (
     <div>
       <nav className="navbar navbar-light bg-light fixed-top">

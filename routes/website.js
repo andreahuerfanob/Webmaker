@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Website = require("../models/Website");
 
 const websites = [
   { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
@@ -21,43 +22,27 @@ router.post("/", (req, res) => {
 // get all website
 router.get("/user/:uid", (req, res) => {
   const uid = req.params.uid;
-  let currentWebsites = [];
-  for (let i = 0; i < websites.length; i++) {
-    if (websites[i].developerId === uid) {
-      currentWebsites.push(websites[i]);
-    }
-  }
+  const currentWebsites = await Website.find({ developerId: uid });
   res.json(currentWebsites);
 });
+
 // Get website by given ID
 router.get("/:wid", (req, res) => {
   const wid = req.params.wid;
-  let website = null;
-  for (let i = 0; i < websites.length; i++) {
-    if (websites[i]._id === wid) {
-      website = websites[i];
-    }
-  }
+  const website = await Website.findById(wid);
   res.json(website);
 });
+
 // update website
 router.put("/", (req, res) => {
   const newWebsite = req.body;
-  for (let i = 0; i < websites.length; i++) {
-    if (websites[i]._id === newWebsite._id) {
-      websites[i] = newWebsite;
-    }
-  }
+  await Website.findByIdAndUpdate(newWebsite._id, newWebsite);
   res.json(newWebsite);
 });
 // Delete Website
 router.delete("/:wid", (req, res) => {
   const wid = req.params.wid;
-  for (let i = 0; i < websites.length; i++) {
-    if (websites[i]._id === wid) {
-      websites.splice(i, 1);
-    }
-  }
+  await Website.findByIdAndRemove(wid);
   res.json(websites);
 });
 module.exports = router;
