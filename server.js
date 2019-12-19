@@ -1,5 +1,8 @@
+// import express library
 const express = require("express");
+// import path to deploy online
 const path = require("path");
+// Init express
 const app = express();
 const connectDB = require("./config/db");
 
@@ -23,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 3100;
-
+// server listening
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
