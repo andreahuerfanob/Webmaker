@@ -14,7 +14,6 @@ export default function PageList(props) {
 
   const getPages = async () => {
     const res = await axios.get(`/api/page/website/${params.wid}`);
-    const pages = res.data;
     setPages(res.data);
   };
 

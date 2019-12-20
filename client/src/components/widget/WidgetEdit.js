@@ -12,12 +12,12 @@ export default function WidgetEdit(props) {
 
   useEffect(() => {
     getWidget();
-   // eslint-disable-next-line  
-  },[]);
+    // eslint-disable-next-line
+  }, []);
 
   const getWidget = async () => {
-    const res = await axios.get(`/api/widget/page/${params.pid}`);
-    setWidgets(res.data);
+    const res = await axios.get(`/api/widget/page/${params.wgid}`);
+    setWidget(res.data);
   };
 
   const onChange = e => {
@@ -26,28 +26,34 @@ export default function WidgetEdit(props) {
 
   const remove = async () => {
     await axios.delete(`/api/website/${params.wid}`);
-    history.push(`/user/${params.uid}/website/${params.wid}/page/${params.pid}/widget`);
+    history.push(
+      `/user/${params.uid}/website/${params.wid}/page/${params.pid}/widget`
+    );
   };
-    
-  const update = async => {
+
+  const update = async e => {
     e.preventDefault();
     const newWidget = widget;
-    if(newWidget.widgetType === "HEADING" && !widget.size) {
+    if (newWidget.widgetType === "HEADING" && !widget.size) {
       widget.size = "1";
     }
-    if(newWidget.widgetType === "IMAGE" || newWidget.widgetType === "YOUTUBE") {
-      if(!newWidget.width) {
-        newWidget.width = "100%"; 
+    if (
+      newWidget.widgetType === "IMAGE" ||
+      newWidget.widgetType === "YOUTUBE"
+    ) {
+      if (!newWidget.width) {
+        newWidget.width = "100%";
       } else {
         newWidget.width += "%";
       }
     }
 
-    if(newWidget.widgetType === "YOUTUBE") {
+    if (newWidget.widgetType === "YOUTUBE") {
       // split url with "/"
       const urlArray = newWidget.url.split("/");
       // parse url into embeded version
-      newWidget.url = "https://www.youtube.com/embed/" + urlArray[urlArray.length-1];
+      newWidget.url =
+        "https://www.youtube.com/embed/" + urlArray[urlArray.length - 1];
     }
     await axios.put("/api/widget", newWidget);
     history.push(
@@ -86,6 +92,6 @@ export default function WidgetEdit(props) {
         update={update}
       />
     );
-};
+  }
   return <div></div>;
 }

@@ -31,9 +31,8 @@ export default function Register(props) {
       email: ""
     };
     const res2 = await axios.post("/api/user", newUser);
-
     // Navigate user into his profile
-    history.push(`/user/${newUser._id}`);
+    history.push(`/user/${res2.data._id}`);
   };
   return (
     <div className="container">
