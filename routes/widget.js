@@ -93,7 +93,6 @@ const widgets = [
       }
     }
     res.json(widgets);
-  });
-  
+  });  
 
 module.exports = router;

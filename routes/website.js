@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
   res.json(website);
 });
 
-// Get all websites by given user id
+// find/get all websites by given user id
 router.get("/user/:uid", async (req, res) => {
   const uid = req.params.uid;
   const currentWebsites = await Website.find({ developerId: uid });

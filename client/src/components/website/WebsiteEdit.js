@@ -19,6 +19,7 @@ export default function WebsiteEdit(props) {
     // eslint-disable-next-line
   }, [params.wid]);
 
+  // async = 
   const getWebsites = async () => {
     const res = await axios.get(`/api/website/user/${params.uid}`);
     setWebsites(res.data);
