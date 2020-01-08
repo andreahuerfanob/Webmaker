@@ -2,6 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+
+// Load user
+router.get("/load", auth, async (req, res) => {
+  const user = await User.findById(req.user.id);
+  res.json(user);
+});
 
 // Find user by credentials
 router.get("/", async (req, res) => {
@@ -23,14 +30,20 @@ router.get("/", async (req, res) => {
   // send user back to client
   res.json(user);
 });
-// create new user
-router.post("/", async (req, res) => {
+// Create new user
+router.post("/register", async (req, res) => {
   const newUser = new User({ ...req.body });
-  const user = await newUser.save();
-  console.log(user);
-  res.json(user);
-});
-
+  // Create salt & hash
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) {
+      throw err;
+    }
+    bcrypt.hash(newUser.password, salt, async (err, hash) => {
+      if (err) {
+        throw err;
+      }
+      newUser.password = hash;
+      const user = await newUser.save();
 // Find user by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id;

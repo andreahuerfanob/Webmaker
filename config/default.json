@@ -1,1 +1,1 @@
-{ "mongo": "mongodb://localhost:27017/web-maker" }
+{ "mongo": "mongodb://localhost:27017/web-maker", "jwtSecret": "secret" }

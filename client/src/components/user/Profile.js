@@ -12,20 +12,19 @@ export default function Profile(props) {
   const params = useParams();
 
   const getUser = async () => {
-    const res = await axios.get(`/api/user/${params.uid}`)
-  ;
-  const user = res.data; 
-  setUsername(user.username);
-  setEmail(user.email);
-  setFirstName(user.firstName);
-  setLastName(user.lastName);
-  setPassword(user.password);
+    const res = await axios.get(`/api/user/${params.uid}`);
+    const user = res.data;
+    setUsername(user.username);
+    setEmail(user.email);
+    setFirstName(user.firstName);
+    setLastName(user.lastName);
+    setPassword(user.password);
   };
 
   useEffect(() => {
-    // get user from server * 
+    // get user from server *
     getUser();
-     //eslint-disable-next-line
+    //eslint-disable-next-line
   }, []);
 
   const update = async () => {
@@ -39,8 +38,14 @@ export default function Profile(props) {
     };
 
     // update user in users
-   await axios.put("/api/user", newUser);
- alert("user info is updated!");
+    await axios.put("/api/user", newUser);
+    alert("user info is updated!");
+  };
+
+  const logout = () => {
+    delete axios.defaults.headers.common["x-auth-token"];
+    localStorage.removeItem("token");
+    history.push("/");
   };
 
   return (

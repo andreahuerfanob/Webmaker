@@ -10,19 +10,16 @@ export default function Login(props) {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const res = await axios.get(
-      `/api/user?username=${username}&password=${password}`
-    );
-    const user = res.data;
-    // We found the user
-    if (user) {
-      // /user/:uid
+    const formData = { username: username, password: password };
+    const res = await axios.post("/api/user/login", formData);
+    if (res.data) {
+      localStorage.setItem("token", res.data.token);
+      const user = res.data.user;
       history.push(`/user/${user._id}`);
     } else {
+      alert("Invalid Credential");
     }
-    // we can't find user
-    alert("Invalid credential");
-  }
+
 
   return (
     <div className="container">
