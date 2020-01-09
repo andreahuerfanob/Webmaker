@@ -19,8 +19,6 @@ export default function Login(props) {
     } else {
       alert("Invalid Credential");
     }
-
-
   return (
     <div className="container">
       <h1>Login</h1>

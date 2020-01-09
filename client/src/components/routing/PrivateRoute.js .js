@@ -11,8 +11,16 @@ export default function PrivateRoute({ component: Component, ...rest }) {
       delete axios.defaults.headers.common["x-auth-token"];
     }
   };
-
-  export default setAuthToken;
+  const loadUser = async () => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+    try {
+      await axios.get("/api/user/load");
+    } catch (error) {
+      history.push("/login");
+    }
+  };
 
   loadUser();
 
@@ -25,5 +33,3 @@ export default function PrivateRoute({ component: Component, ...rest }) {
     />
   );
 }
-
-export default PrivateRoute;

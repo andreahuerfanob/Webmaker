@@ -1,8 +1,45 @@
 const express = require("express");
 const router = express.Router();
-
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const config = require("config");
+const auth = require("../middleware/auth");
 const bcrypt = require("bcryptjs");
+
+// Login
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  // check if username is correct
+  let user = await User.findOne({ username: username });
+  if (!user) {
+    res.json(null);
+  } else {
+    // Validate password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      res.json(null);
+    }
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    jwt.sign(
+      payload,
+      config.get("jwtSecret"),
+      {
+        expiresIn: "1d"
+      },
+      (error, token) => {
+        if (error) {
+          throw error;
+        }
+        res.json({ token, user });
+      }
+    );
+  }
+});
 
 // Load user
 router.get("/load", auth, async (req, res) => {
@@ -10,19 +47,12 @@ router.get("/load", auth, async (req, res) => {
   res.json(user);
 });
 
-// Find user by credentials
+// Find user by credentials , is username  is taken?
 router.get("/", async (req, res) => {
   // get username & pass
   const username = req.query.username;
   const password = req.query.password;
-  let user;
-  // if username & password r sent from client
-  if (username && password) {
-    user = await User.findOne({ username: username, password: password });
-    // if the username is taken
-  } else if (username) {
-    user = await User.findOne({ username: username, password: password });
-  }
+  let use = await User.findOne({ username: username });
   // if user doesn't exist
   if (!user) {
     user = null;
@@ -44,6 +74,28 @@ router.post("/register", async (req, res) => {
       }
       newUser.password = hash;
       const user = await newUser.save();
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        {
+          expiresIn: "1d"
+        },
+        (err, token) => {
+          if (err) {
+            throw err;
+          }
+          res.json({ token, user });
+        }
+      );
+    });
+  });
+});
+
 // Find user by id
 router.get("/:id", async (req, res) => {
   const id = req.params.id;

@@ -109,9 +109,9 @@ export default function Profile(props) {
         >
           Websites
         </Link>
-        <Link className="btn btn-danger btn-block" to="/login">
+        <button className="btn btn-danger btn-block" onClick={logout}>
           Logout
-        </Link>
+        </button>
       </div>
       <nav className="navbar bg-primary fixed-bottom">
         <span />
