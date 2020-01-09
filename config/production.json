@@ -1,4 +1,4 @@
 {
-  "mongo": "@ds021034.mlab.com:21034/heroku_g530cczb",
+  "mongo": "@ds261648.mlab.com:61648/heroku_280f4h5m",
   "jwtSecret": "msimbo"
 }
