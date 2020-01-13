@@ -1,9 +1,16 @@
 import React from "react";
 import { Route, useHistory } from "react-router-dom";
 import axios from "axios";
-import setAuthToken from "../../utils/setAuthToken";
-const PrivateRoute = ({ component: Component, ...rest }) => {
+
+export default function PrivateRoute({ component: Component, ...rest }) {
   const history = useHistory();
+  const setAuthToken = token => {
+    if (token) {
+      axios.defaults.headers.common["x-auth-token"] = token;
+    } else {
+      delete axios.defaults.headers.common["x-auth-token"];
+    }
+  };
 
   const loadUser = async () => {
     if (localStorage.token) {
@@ -12,7 +19,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     try {
       await axios.get("/api/user/load");
     } catch (error) {
-      history.push("/");
+      history.push("/login");
     }
   };
 
@@ -26,6 +33,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       }}
     />
   );
-};
-
-export default PrivateRoute;
+}
