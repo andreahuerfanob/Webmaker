@@ -46,7 +46,6 @@ router.get("/load", auth, async (req, res) => {
   const user = await User.findById(req.user.id);
   res.json(user);
 });
-
 // Find user by credentials , is username  is taken?
 router.get("/", async (req, res) => {
   // get username & pass
@@ -83,7 +82,7 @@ router.post("/register", async (req, res) => {
         payload,
         config.get("jwtSecret"),
         {
-          expiresIn: "1d"
+          expiresIn: "10d"
         },
         (err, token) => {
           if (err) {

@@ -9,7 +9,6 @@ export default function WidgetChooser(props) {
   const create = async type => {
     // Create new widget variable
     const newWidget = {
-      _id: uuid.v4(),
       widgetType: type,
       pageId: params.pid
     };
